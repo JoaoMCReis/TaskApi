@@ -56,14 +56,12 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("admin"));
     options.AddPolicy("ManagerOrAdmin", policy => policy.RequireRole("admin", "manager"));
-    // Outras policies podem ser adicionadas aqui conforme evolução das regras
 });
 
 var app = builder.Build();
 
 app.UseCors("AllowLocal4200");
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

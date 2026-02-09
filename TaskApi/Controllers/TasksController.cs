@@ -38,7 +38,12 @@ public class TasksController : ControllerBase
             .Take(pageSize)
             .ToListAsync();
 
-        return Ok(tasks);
+        //return Ok(tasks);
+        return Ok(new
+        {
+            items = tasks,
+            totalCount = await query.CountAsync()
+        });
     }
 
     [HttpPost]
